@@ -236,7 +236,6 @@ export default function ProductEdit() {
       )
    }
 
-
    async function onEdit(e) {
 
       e.preventDefault()
@@ -249,6 +248,7 @@ export default function ProductEdit() {
          setMensagemShow('Preencha todos os campos obrigatórios.')
          return
       }
+
       setLoading(true)
 
       const sendAlter = new FormData()
@@ -277,8 +277,27 @@ export default function ProductEdit() {
 
          const inf = await res.json()
          if (inf.autenticacao === false) {
-            navigation('/')
+            setMensagen(true)
+            setTypeMensagen(false)
+            setMensagemShow(inf.mensagem)
+            setTimeout(() => { navigation('/') }, 4000)
             return
+         }
+
+         if (inf.erro === true) {
+            setMensagen(true)
+            setTypeMensagen(false)
+            setMensagemShow(inf.mensagem)
+
+            setTimeout(() => { setMensagen(false) }, 4000)
+            return
+         }
+
+         if (inf.erro === false) {
+            setMensagen(true)
+            setTypeMensagen(true)
+            setMensagemShow(inf.mensagem)
+            setTimeout(() => { setMensagen(false) }, 4000)
          }
 
       } catch (erro) {
@@ -286,6 +305,14 @@ export default function ProductEdit() {
       } finally {
          setLoading(false)
       }
+
+      setName('')
+      setStock('')
+      setPrice('')
+      setDescription('')
+      setImagens([])
+      setEspecificacoes([])
+      setOtherespecificacoes([])
    }
 
    return (
@@ -303,7 +330,7 @@ export default function ProductEdit() {
                         ease: "easeOut"
                      }}
                   >
-                     <Sucesso mensgem={'ola mundo'} />
+                     <Sucesso mensgem={mensagemShow} />
                   </motion.div>
 
                   :

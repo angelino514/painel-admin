@@ -4,7 +4,7 @@ export default function Sucesso({ mensgem }) {
    return (
       <div className="sucesso">
          <div className="face">
-            <div className="container-box-sucesso ">
+            <div className="container-box-sucesso">
                <svg className="iconeSucesso" viewBox="0 0 100 100" width="150px"
                   height="150px">
 

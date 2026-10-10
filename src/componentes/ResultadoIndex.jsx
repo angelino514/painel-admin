@@ -6,7 +6,6 @@ export default function ResultadoIndex() {
 
    const [loading, setLoading] = useState(true)
 
-
    const [products, setProducts] = useState([]);
    async function searchProducts() {
       try {

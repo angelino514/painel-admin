@@ -1,51 +1,55 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom";
 import ProductList from "./ProductList";
-import { useNavigate } from "react-router-dom";
-
+import LoaderProducts from "./LoaderProducts";
 
 export default function Resultado() {
-
-   const navegacao = useNavigate()
-
+   const navegacao = useNavigate();
    const { valor, accao } = useParams();
-   const [products, setProductcs] = useState([])
+
+   const [loading, setLoading] = useState(true);
+   const [products, setProducts] = useState([]);
 
    async function searchProdutos(valor) {
+      setLoading(true);
+
       try {
-         const res = await fetch(`https://banck-end.vercel.app/buscar/${encodeURIComponent(accao)}/${encodeURIComponent(valor)}`, {
-            credentials: 'include'
-         });
+         const res = await fetch(
+            `https://banck-end.vercel.app/buscar/${encodeURIComponent(accao)}/${encodeURIComponent(valor)}`,
+            { credentials: "include" }
+         );
 
          if (!res.ok) {
             throw new Error("Erro ao buscar produtos");
          }
 
          const dados = await res.json();
-         setProductcs(dados)
 
          if (dados.autenticacao === false) {
-            navegacao('/')
-            return
+            navegacao("/");
+            return;
          }
 
-
+         setProducts(dados);
       } catch (erro) {
-         console.error(erro);
+         return
+      } finally {
+         setLoading(false);
       }
    }
 
    useEffect(() => {
-      if (valor?.trim() !== '') {
+      if (valor?.trim()) {
          searchProdutos(valor);
+      } else {
+         setProducts([]);
+         setLoading(false);
       }
-   }, [valor]);
+   }, [valor, accao]);
 
-   return (
-      <>
-         <ProductList product={products} />
-      </>
-   )
+   if (loading) {
+      return <LoaderProducts />;
+   }
+
+   return <ProductList product={products} />;
 }
-
-

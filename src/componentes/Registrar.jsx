@@ -19,6 +19,8 @@ export default function Registrar() {
     confirmarSenha: ''
   })
 
+
+  const [showPass, setShowPasse] = useState(false)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -95,6 +97,7 @@ export default function Registrar() {
     formData.confirmarSenha = ''
   }
 
+
   return (
     <div className="register-container-main">
 
@@ -156,7 +159,7 @@ export default function Registrar() {
             {/* Campo Senha */}
             <div className="register-input-group">
               <input
-                type="password"
+                type={showPass ? 'text' : 'password'}
                 name="senha"
                 placeholder="Senha"
                 value={formData.senha}
@@ -168,7 +171,7 @@ export default function Registrar() {
             {/* Campo Confirmação de Senha */}
             <div className="register-input-group">
               <input
-                type="password"
+                type={showPass ? 'text' : 'password'}
                 name="confirmarSenha"
                 placeholder="Confirmar Senha"
                 value={formData.confirmarSenha}
@@ -177,8 +180,11 @@ export default function Registrar() {
               <i className="fa-solid fa-eye-slash register-icon"></i>
             </div>
 
-            <div>
-              <input type="checkbox" />
+            <div className='container-checkbox-show-pass'>
+              <input type="checkbox" checked={showPass} onChange={(e) => {
+                setShowPasse(e.target.checked)
+              }} />
+              <p> Mostrar palavra-passe </p>
             </div>
 
             {/* Botão Entrar */}

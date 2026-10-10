@@ -17,6 +17,7 @@ export default function Entrar() {
       dadosVazio: 'Preencha Todos os campos'
    }
 
+   const [showPass, setShowPasse] = useState(false)
    const [formData, setFormData] = useState({
       email: '',
       senha: ''
@@ -107,7 +108,7 @@ export default function Entrar() {
                      <input
                         type="email"
                         name="email"
-                        placeholder="angelinoeurico574@gmail.com"
+                        placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
                      />
@@ -117,13 +118,20 @@ export default function Entrar() {
                   {/* Campo Senha */}
                   <div className="register-input-group">
                      <input
-                        type="password"
+                        type={showPass ? 'text' : 'password'}
                         name="senha"
                         placeholder="••••••"
                         value={formData.senha}
                         onChange={handleChange}
                      />
                      <i className="fa-solid fa-eye register-icon"></i>
+                  </div>
+
+                  <div className='container-checkbox-show-pass'>
+                     <input type="checkbox" checked={showPass} onChange={(e) => {
+                        setShowPasse(e.target.checked)
+                     }} />
+                     <p> Mostrar palavra-passe </p>
                   </div>
 
                   {/* Botão Entrar */}

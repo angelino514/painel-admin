@@ -319,6 +319,13 @@ button {
   }
 }
 
+.container-checkbox-show-pass {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 5px;
+}
+
 .content-open-menu,
 .btn-open-menu {
   display: none;
@@ -495,6 +502,7 @@ button {
   position: absolute;
   z-index: 999;
 }
+
 
 /* Classes específicas para centralizar o conteúdo da confirmação de email */
 .container-main-email {
@@ -1591,7 +1599,7 @@ button {
   }
 
   .register-form-wrapper {
-    width: 80%;
+    width: 90%;
     max-width: 380px;
     margin: 0 auto;
   }
@@ -1614,5 +1622,9 @@ button {
     width: 100vw;
     margin-left: 0;
     left: 0;
+  }
+
+  .container-box-sucesso {
+    min-width: 80vw;
   }
 }
