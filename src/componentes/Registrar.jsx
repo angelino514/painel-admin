@@ -188,7 +188,7 @@ export default function Registrar() {
             </div>
 
             {/* Botão Entrar */}
-            <button type="submit" className="register-submit-btn"> Enviar </button>
+            <button type="submit" className="register-submit-btn"> {'Enviar'} </button>
           </form>
 
           {/* Rodapé do formulário */}
