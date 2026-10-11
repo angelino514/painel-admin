@@ -352,7 +352,6 @@ export default function NovoProduto() {
 
                   {/* Botões de Ação */}
                   <div className="form-actions">
-                     <button type="button" className="btn-secondary" onClick={() => { }}>Cancelar</button>
                      <button type="submit" className="btn-primary">Salvar Produto</button>
                   </div>
                </form>

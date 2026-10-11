@@ -22,7 +22,7 @@ export default function DropdownCategoria({ filtercatgory }) {
          {aberto && (
             <div className="dropdown-menu">
 
-               {filtercatgory.map((categoria) => (
+               {['todas', ...filtercatgory].map((categoria) => (
                   <div
                      key={categoria}
                      type="button"

@@ -1618,7 +1618,8 @@ button {
   .section-all-new,
   .header-produto,
   .main-div-list,
-  .section-mensagen {
+  .section-mensagen,
+  .loader-container {
     width: 100vw;
     margin-left: 0;
     left: 0;

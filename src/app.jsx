@@ -12,10 +12,6 @@ import ProductEdit from './componentes/ProductEdit'
 
 export function App() {
 
-
-
-  const api = 'https://banck-end.vercel.app/produtos'
-
   return (
     <>
       <BrowserRouter>

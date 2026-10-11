@@ -10,8 +10,12 @@ import SkeletonProductEdit from './SkeletonProductEdit';
 
 export default function ProductEdit() {
 
+
+
    const { id } = useParams()
    const navigation = useNavigate()
+
+   console.log(id)
 
    const [mensagen, setMensagen] = useState(false)
    const [typeMensagen, setTypeMensagen] = useState(false)
@@ -93,6 +97,8 @@ export default function ProductEdit() {
          }
 
          setCurrentValues(values)
+
+         console.log(information)
 
          setName(values.name)
          setDescription(values.description)
@@ -612,14 +618,15 @@ export default function ProductEdit() {
                               </div>
                            ))}
                         </div>
-
                      </div>
 
                   </div>
 
                   {/* Botões de Ação */}
                   <div className="form-actions">
-                     <button type="button" className="btn-secondary">Cancelar</button>
+                     <button type="button" className="btn-secondary" onClick={() => {
+                        navigation('/admin/Produtos')
+                     }}>Cancelar</button>
                      <button type="submit" className="btn-primary">Salvar Produto</button>
                   </div>
                </form>
