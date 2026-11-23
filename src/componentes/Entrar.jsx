@@ -61,7 +61,6 @@ export default function Entrar() {
          })
 
          const dados = await resposta.json();
-
          if (dados.error === true) {
             setIloading(false)
             setExisteErro(true)

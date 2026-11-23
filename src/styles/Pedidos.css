@@ -93,6 +93,18 @@
   gap: 24px;
 }
 
+.container-all-etrg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lb-itrg {
+  font-size: 12px;
+}
+
+
 .listPedidos .content-lt-pd img {
   width: 105px;
   height: 105px;

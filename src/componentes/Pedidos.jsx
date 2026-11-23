@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { cache, useEffect, useState } from 'react'
 import {
   Menu, X, CreditCard,
   Clock,
@@ -36,7 +36,7 @@ export function Pedidos() {
     } finally {
       setLoading(false)
     }
-  } 
+  }
 
   useEffect(() => { pedidosAdm() }, [])
 
@@ -77,9 +77,38 @@ export function Pedidos() {
   }
 
 
+  async function concluirEntrega({ item }) {
+
+    if( item.pendente === 0 ) return
+   
+    try {
+    
+      const formData = new FormData()
+      formData.append('id_pedido' , item.id)
+
+      const res = await fetch('https://banck-end.vercel.app/concluirEntrega', {
+        method :'POST' ,
+        credentials: 'include',
+        body : formData
+      })
+
+      const data = await res.json()
+      if (data.success) {
+        setLista(lista.map((pedido) =>
+          pedido.id === item.id
+            ? { ...pedido, pendente: 0 }
+            : pedido
+        ))
+      }
+
+    } catch (erro) {
+      return
+    }
+   
+  }
+
   return (
     <>
-
       {openInf && <InfCliente user={infCl} />}
 
       <header className='header-pedidos'>
@@ -101,58 +130,70 @@ export function Pedidos() {
 
           {!loading ?
             <aside className='listPedidos'>
-              {lista?.map((item, index) => (
-                <article key={index} className='container-lt-pd'>
+              {lista?.map((item, index) => {
+                return (
+                  <article key={index} className='container-lt-pd'>
+                    <div className="inf-all-status">
+                      {item.pagamento === 1 ?
+                        <span className='all-status stutus-true'>
+                          <CheckCircle2 size={20} />
+                          Pagamento concluído
+                        </span> : <span className='all-status stutus-false'>
+                          <Clock size={20} />
+                          Pagamento pendente
+                        </span>}
 
-                  <div className="inf-all-status">
-
-                    {item.pagamento === 1 ?
-                      <span className='all-status stutus-true'>
-                        <CheckCircle2 size={20} />
-                        Pagamento concluído
-                      </span> : <span className='all-status stutus-false'>
-                        <Clock size={20} />
-                        Pagamento pendente
-                      </span>}
-
-                    {!item.pendente === 1 ?
-                      <span className='all-status stutus-true'>
-                        <PackageCheck size={20} />
-                        Entrega concluída
-                      </span> :
-                      <span className='all-status stutus-false'>
-                        <Truck size={20} />
-                        Entrega pendente
-                      </span>}
-                  </div>
-
-                  <div className='content-lt-pd'>
-                    <img src={`https://banck-end.vercel.app/imagens/${item.produto_id}`} alt={item.produto_id} />
-                    <div className='inf-all-pd'>
-                      <p>Data do pedido: {formatarData(item.data_pedido)}</p>
-                      <p> quantidade {item.quantidade}</p>
-                      <p>
-                        {item.variacoes.especificacao_valor}
-                        {item.variacoes.outra_especificacao_valor !== null &&
-                          <span>
-                            /{item.variacoes.outra_especificacao_valor}
-                          </span>}
-                      </p>
+                      {item.pendente === 0 ?
+                        <span className='all-status stutus-true'>
+                          <PackageCheck size={20} />
+                          Entrega concluída
+                        </span> :
+                        <span className='all-status stutus-false'>
+                          <Truck size={20} />
+                          Entrega pendente
+                        </span>}
                     </div>
 
-                    <div className="inf-all-values">
-                      <p>Preço: {formatarPreco(item.preco)} Kz</p>
-                      <p>Total: {formatarPreco(item.total)} Kz</p>
+                    <div className='content-lt-pd'>
+                      <img src={`https://banck-end.vercel.app/imagens/${item.produto_id}`} alt={item.produto_id} />
+                      <div className='inf-all-pd'>
+                        <p>Data do pedido: {formatarData(item.data_pedido)}</p>
+                        <p> quantidade {item.quantidade}</p>
+                        <p>
+                          {item.variacoes.especificacao_valor}
+                          {item.variacoes.outra_especificacao_valor !== null &&
+                            <span>
+                              /{item.variacoes.outra_especificacao_valor}
+                            </span>}
+                        </p>
+                      </div>
 
-                      <button onClick={() => {
-                        setInfCl(item)
-                        setOpenInf(true)
-                      }}> Cliente </button>
+                      <div className="inf-all-values">
+                        <p>Preço: {formatarPreco(item.preco)} Kz</p>
+                        <p>Total: {formatarPreco(item.total)} Kz</p>
+
+                        <div className="container-all-etrg">
+                          <input
+                            type="checkbox"
+                            checked={item.pendente === 0}
+                            id="entrega"
+                            onChange={() => {
+                              concluirEntrega({ item : item })
+                            }}
+                          />
+                          <label className='lb-itrg' htmlFor="entrega">Entrega Concluida</label>
+                       </div>
+
+                        <button onClick={() => {
+                          setInfCl(item)
+                          setOpenInf(true)
+                        }}> Cliente </button>
+                      </div>
+
                     </div>
-
-                  </div>
-                </article>
-              ))}
+                  </article>
+                )
+              })}
             </aside>
             : <SkeletonPedidos />
           }
