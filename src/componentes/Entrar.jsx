@@ -60,9 +60,7 @@ export default function Entrar() {
             credentials: 'include'
          })
 
-         console.log('Status:', resposta.status);
          const dados = await resposta.json();
-         console.log('Dados recebidos:', dados);
 
          if (dados.error === true) {
             setIloading(false)
@@ -75,7 +73,7 @@ export default function Entrar() {
          }
 
       } catch (erro) {
-         console.log(erro)
+        return
       }
    }
 

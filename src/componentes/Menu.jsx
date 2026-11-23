@@ -5,7 +5,8 @@ export default function Menu({ adimin, setMenuActivo, menuActivo }) {
 
    const listaMenu = [
       { iten: 'Novo produto', rota: '/admin/NovoProduto' },
-      { iten: 'Produtos', rota: '/admin/Produtos' }
+      { iten: 'Produtos', rota: '/admin/Produtos' },
+      { iten: 'Pedidos', rota: '/admin/Pedidos'}
    ]
 
    return (

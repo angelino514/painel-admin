@@ -9,6 +9,7 @@ import NovoProduto from './componentes/NovoProduto'
 import Resultado from './componentes/Resultado'
 import ResultadoIndex from './componentes/ResultadoIndex'
 import ProductEdit from './componentes/ProductEdit'
+import { Pedidos } from './componentes/Pedidos'
 
 export function App() {
 
@@ -25,6 +26,8 @@ export function App() {
               <Route path="Resultado/:accao/:valor" element={<Resultado />} />
               <Route path="ProductEdit/:id" element={<ProductEdit />} />
             </Route>
+
+            <Route path="Pedidos" element={<Pedidos />} />
 
           </Route>
           <Route path='/registrar' element={<Registrar />} />

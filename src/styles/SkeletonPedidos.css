@@ -1,0 +1,131 @@
+
+.skeleton-pedidos {
+  width: 100%;
+}
+
+.skeleton-pedidos .container-lt-pd {
+  padding: 22px;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #edf0f4;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+.skeleton-pedidos .inf-all-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 30px;
+}
+
+.skeleton-pedidos .sk-status {
+  width: 145px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.skeleton-pedidos .content-lt-pd {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.skeleton-pedidos .sk-img {
+  width: 105px;
+  height: 105px;
+  border-radius: 13px;
+  flex-shrink: 0;
+}
+
+.skeleton-pedidos .inf-all-pd {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  flex: 1;
+}
+
+.skeleton-pedidos .sk-text {
+  height: 13px;
+}
+
+.skeleton-pedidos .sk-data {
+  width: 190px;
+}
+
+.skeleton-pedidos .sk-quantidade {
+  width: 110px;
+}
+
+.skeleton-pedidos .sk-variacao {
+  width: 145px;
+}
+
+/* Valores */
+.skeleton-pedidos .inf-all-values {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 20px;
+  border-left: 1px solid #f1f5f9;
+}
+
+.skeleton-pedidos .sk-preco {
+  width: 110px;
+}
+
+.skeleton-pedidos .sk-total {
+  width: 125px;
+  height: 17px;
+}
+
+.skeleton-pedidos .sk-button {
+  width: 105px;
+  height: 38px;
+  border-radius: 9px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+  .skeleton-pedidos .container-lt-pd {
+    padding: 15px;
+  }
+
+  .skeleton-pedidos .inf-all-status {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .skeleton-pedidos .sk-status {
+    width: 115px;
+    height: 25px;
+  }
+
+  .skeleton-pedidos .content-lt-pd {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .skeleton-pedidos .sk-img {
+    width: 78px;
+    height: 78px;
+  }
+
+  .skeleton-pedidos .inf-all-pd {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .skeleton-pedidos .inf-all-values {
+    width: 100%;
+    padding: 12px 0 0;
+    margin: 0;
+    border-left: none;
+    border-top: 1px solid #f1f5f9;
+  }
+}

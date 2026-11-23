@@ -10,8 +10,6 @@ import SkeletonProductEdit from './SkeletonProductEdit';
 
 export default function ProductEdit() {
 
-
-
    const { id } = useParams()
    const navigation = useNavigate()
 
