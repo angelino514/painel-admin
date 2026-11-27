@@ -108,7 +108,11 @@ export default function Registrar() {
         <div className="register-left-content">
           <h1>Bem Vindo!</h1>
           <p>Voce pode controlar a sua loja 100% remoto com esse sistema de gestao</p>
-          <button className="register-outline-btn">Loja Online</button>
+          <button className="register-outline-btn"
+            onClick={() => {
+              window.location.href = 'https://ecommerce-react-gamma-ruddy.vercel.app/'
+            }}
+          >Loja Online</button>
         </div>
       </div>
 

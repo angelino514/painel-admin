@@ -87,7 +87,9 @@ export default function Entrar() {
                <h1>Bem-vindo!</h1>
                <p>Tenha o controle da sua loja em um só lugar. Gerencie produtos, estoque, preços e imagens de forma simples, rápida e segura — de onde estiver.</p>
                <h2> A sua gestão, sempre ao seu alcance. </h2>
-               <button className="register-outline-btn">Loja Online</button>
+               <button className="register-outline-btn" onClick={() => {
+                  window.location.href = 'https://ecommerce-react-gamma-ruddy.vercel.app/'
+               }}>Loja Online</button>
             </div>
          </div>
 
